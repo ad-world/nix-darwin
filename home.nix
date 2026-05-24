@@ -25,7 +25,6 @@
     bat
     starship
     fastfetch
-    gogcli
 
     # DB
     postgresql_18

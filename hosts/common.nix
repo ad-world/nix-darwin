@@ -30,6 +30,7 @@
   homebrew = {
     enable = true;
     brews = [
+      "gogcli"
       "summarize"
       "steipete/tap/spogo"
       "steipete/tap/remindctl"
