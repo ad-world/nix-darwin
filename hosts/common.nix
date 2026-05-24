@@ -26,6 +26,28 @@
   # ── Primary user (required for defaults) ────────
   system.primaryUser = "aryaman";
 
+  # ── Homebrew (brew-only packages not in nixpkgs) ─
+  homebrew = {
+    enable = true;
+    brews = [
+      "summarize"
+      "steipete/tap/spogo"
+      "steipete/tap/remindctl"
+      "steipete/tap/imsg"
+      "openclaw/tap/goplaces"
+      "yakitrak/yakitrak/obsidian-cli"
+    ];
+    taps = [
+      "steipete/tap"
+      "openclaw/tap"
+      "yakitrak/yakitrak"
+    ];
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+    };
+  };
+
   # ── macOS defaults ──────────────────────────────
   system.defaults = {
     dock = {
