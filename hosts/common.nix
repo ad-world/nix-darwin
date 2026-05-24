@@ -26,6 +26,11 @@
   # ── Primary user (required for defaults) ────────
   system.primaryUser = "aryaman";
 
+  # ── Fonts ──────────────────────────────────────
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   # ── Homebrew (brew-only packages not in nixpkgs) ─
   homebrew = {
     enable = true;
@@ -43,9 +48,16 @@
       "openclaw/tap"
       "yakitrak/yakitrak"
     ];
+    casks = [
+      "ghostty"
+      "orbstack"
+      "tailscale"
+      "rectangle"
+      "1password"
+    ];
     onActivation = {
       autoUpdate = true;
-      cleanup = "zap";
+      cleanup = "none";  # change to "zap" once you've verified everything works
     };
   };
 

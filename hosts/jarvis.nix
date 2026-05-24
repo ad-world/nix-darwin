@@ -5,5 +5,6 @@
 
   networking.hostName = "jarvis";
 
-  # Host-specific system config goes here
+  # Host-specific system or home config goes here
+  # home-manager.users.aryaman = { ... };
 }

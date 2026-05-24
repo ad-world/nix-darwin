@@ -25,6 +25,14 @@
     bat
     starship
     fastfetch
+    wget
+    cloudflared
+    sqlite
+
+    # Dev tools (global for now, move to per-project devShells later)
+    go
+    gcc
+    cmake
 
     # DB
     postgresql_18
@@ -39,11 +47,13 @@
 
     git = {
       enable = true;
-      userName = "ad-world";
-      userEmail = "aryamandhingra@gmail.com";
-      extraConfig = {
+      settings = {
+        user.name = "ad-world";
+        user.email = "aryamandhingra@gmail.com";
         init.defaultBranch = "main";
         pull.rebase = true;
+        lfs.enable = true;
+        core.autocrlf = "input";
       };
     };
 
@@ -52,9 +62,20 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-      initExtra = ''
+      initContent = ''
         # Show Apple logo on terminal start
         fastfetch -l macos
+
+        # OrbStack integration
+        source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+        # Google Cloud SDK
+        if [ -f '/Users/aryaman/google-cloud-sdk/path.zsh.inc' ]; then
+          . '/Users/aryaman/google-cloud-sdk/path.zsh.inc'
+        fi
+        if [ -f '/Users/aryaman/google-cloud-sdk/completion.zsh.inc' ]; then
+          . '/Users/aryaman/google-cloud-sdk/completion.zsh.inc'
+        fi
       '';
     };
 
@@ -71,78 +92,28 @@
     starship = {
       enable = true;
       settings = {
-        add_newline = true;
-
-        character = {
-          success_symbol = "[❯](bold green)";
-          error_symbol = "[❯](bold red)";
-          vimcmd_symbol = "[❮](bold green)";
-        };
-
-        directory = {
-          truncation_length = 3;
-          truncate_to_repo = true;
-          style = "bold cyan";
-        };
-
-        git_branch = {
-          format = "on [$branch]($style) ";
-          style = "bold purple";
-        };
-
-        git_status = {
-          format = "[$all_status$ahead_behind]($style) ";
-          style = "bold purple";
-          conflicted = "🏳";
-          ahead = "⇡";
-          behind = "⇣";
-          diverged = "⇕";
-          up_to_date = "";
-          untracked = "?";
-          stashed = "$";
-          modified = "!";
-          staged = "+";
-          renamed = "»";
-          deleted = "✘";
-        };
-
-        cmd_duration = {
-          format = "took [$duration]($style) ";
-          style = "bold yellow";
-        };
-
-        nix_shell = {
-          format = "via [$symbol$state]($style) ";
-          symbol = "❄️  ";
-        };
+        gcloud.disabled = true;
+        scala.disabled = true;
 
         nodejs = {
-          format = "via [$symbol$version]($style) ";
-          symbol = "⬢ ";
-          style = "bold green";
+          disabled = false;
+          format = "via [$symbol($version )]($style)";
         };
 
         python = {
-          format = "via [🐍 $version]($style) ";
-          style = "bold yellow";
-        };
-
-        rust = {
-          format = "via [🦀 $version]($style) ";
-          style = "bold red";
+          disabled = false;
+          format = "via [$symbol$pyenv_prefix($version )(\\($virtualenv\\) )]($style)";
         };
 
         time = {
           disabled = false;
           format = "at [$time]($style) ";
-          style = "bold dimmed white";
         };
       };
     };
   };
 
-  # Ensure bun global bin is on PATH
-  home.sessionPath = [ "$HOME/.bun/bin" ];
+  home.sessionPath = [ "/Users/aryaman/.bun/bin" "/opt/homebrew/bin" ];
 
   home.stateVersion = "24.11";
 }
