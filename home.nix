@@ -33,6 +33,7 @@
     go
     gcc
     cmake
+    gnumake
 
     # DB
     postgresql_18
