@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+default_flake_dir="$(cd -- "$script_dir/.." && pwd)"
+flake_dir="${NIX_DARWIN_FLAKE_DIR:-$default_flake_dir}"
+
+normalize_host() {
+  printf '%s' "$1" | tr '[:upper:] ' '[:lower:]-'
+}
+
+config_exists() {
+  nix eval --raw "$flake_dir#darwinConfigurations.$1.config.networking.hostName" >/dev/null 2>&1
+}
+
+detect_host() {
+  if [[ -n "${NIX_DARWIN_HOST:-}" ]]; then
+    printf '%s\n' "$NIX_DARWIN_HOST"
+    return 0
+  fi
+
+  while IFS= read -r raw_host; do
+    host="$(normalize_host "$raw_host")"
+    [[ -z "$host" ]] && continue
+
+    if config_exists "$host"; then
+      printf '%s\n' "$host"
+      return 0
+    fi
+  done < <(
+    {
+      scutil --get ComputerName 2>/dev/null || true
+      scutil --get LocalHostName 2>/dev/null || true
+      scutil --get HostName 2>/dev/null || true
+      hostname -s 2>/dev/null || true
+    } | awk 'NF && !seen[$0]++'
+  )
+}
+
+host="$(detect_host || true)"
+if [[ -z "$host" ]]; then
+  echo "Could not detect a matching darwinConfigurations.<host>." >&2
+  echo "Set NIX_DARWIN_HOST=jarvis or NIX_DARWIN_FLAKE_DIR=$flake_dir." >&2
+  exit 1
+fi
+
+echo "Applying nix-darwin config: $flake_dir#$host"
+exec sudo darwin-rebuild switch --flake "$flake_dir#$host"

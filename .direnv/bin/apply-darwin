@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-sudo darwin-rebuild switch --flake "${NIX_DARWIN_FLAKE:-$PWD#macbook}"

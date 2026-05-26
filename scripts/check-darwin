@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+default_flake_dir="$(cd -- "$script_dir/.." && pwd)"
+flake_dir="${NIX_DARWIN_FLAKE_DIR:-$default_flake_dir}"
+nix flake check "$flake_dir" --no-build

@@ -5,6 +5,35 @@
 
   networking.hostName = "jarvis";
 
-  # Host-specific system or home config goes here
-  # home-manager.users.aryaman = { ... };
+  # Host-specific Home Manager config.
+  home-manager.users.aryaman = { config, pkgs, ... }: {
+    home.packages = [ pkgs.opencode ];
+
+    home.file.".local/share/opencode/logs/.keep".text = "";
+
+    launchd.agents.opencode-server = {
+      enable = true;
+      config = {
+        Label = "ai.opencode.server";
+        ProgramArguments = [
+          "${pkgs.opencode}/bin/opencode"
+          "serve"
+          "--port"
+          "4096"
+          "--print-logs"
+        ];
+        RunAtLoad = true;
+        KeepAlive = true;
+        WorkingDirectory = "${config.home.homeDirectory}/jarvis";
+        StandardOutPath = "${config.home.homeDirectory}/.local/share/opencode/logs/opencode.out.log";
+        StandardErrorPath = "${config.home.homeDirectory}/.local/share/opencode/logs/opencode.err.log";
+        ThrottleInterval = 30;
+        EnvironmentVariables = {
+          HOME = config.home.homeDirectory;
+          PATH = "${config.home.profileDirectory}/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+        };
+        ProcessType = "Interactive";
+      };
+    };
+  };
 }
