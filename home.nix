@@ -4,6 +4,8 @@ let
   yfin-cli = pkgs.callPackage ./packages/yfin-cli.nix { };
 in
 {
+  imports = [ ./configs/zed.nix ];
+
   home.username = "aryaman";
   home.homeDirectory = "/Users/aryaman";
 
@@ -118,7 +120,8 @@ in
     };
   };
 
-  home.sessionPath = [ "/Users/aryaman/.bun/bin" "/opt/homebrew/bin" ];
+  # Keep Bun globals (notably `pi`) available, but do not put Homebrew ahead of Nix.
+  home.sessionPath = [ "/Users/aryaman/.bun/bin" ];
 
   home.stateVersion = "24.11";
 }

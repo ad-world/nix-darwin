@@ -5,6 +5,6 @@
 
   networking.hostName = "macbook";
 
-  # Host-specific system or home config goes here
-  # home-manager.users.aryaman = { ... };
+  # Host-specific Home Manager config.
+  home-manager.users.aryaman.imports = [ ../configs/zed-macbook.nix ];
 }
