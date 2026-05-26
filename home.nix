@@ -4,7 +4,10 @@ let
   yfin-cli = pkgs.callPackage ./packages/yfin-cli.nix { };
 in
 {
-  imports = [ ./configs/zed.nix ];
+  imports = [
+    ./configs/zed.nix
+    ./configs/ghostty.nix
+  ];
 
   home.username = "aryaman";
   home.homeDirectory = "/Users/aryaman";
