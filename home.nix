@@ -52,6 +52,13 @@ in
       nix-direnv.enable = true;
     };
 
+    helix = {
+      enable = true;
+      settings = {
+        theme = "dark_high_contrast";
+      };
+    };
+
     git = {
       enable = true;
       settings = {
