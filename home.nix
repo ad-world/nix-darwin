@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  yfin-cli = pkgs.callPackage ./packages/yfin-cli.nix { };
+in
 {
   home.username = "aryaman";
   home.homeDirectory = "/Users/aryaman";
@@ -9,6 +12,7 @@
     # Runtimes
     bun
     uv
+    yfin-cli
     nodejs_22
 
     # Shell & CLI
