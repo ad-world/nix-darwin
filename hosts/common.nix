@@ -51,7 +51,7 @@
     casks = [
       "ghostty"
       "orbstack"
-      "tailscale"
+      "tailscale-app"
       "rectangle"
       "1password"
     ];
