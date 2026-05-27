@@ -7,6 +7,7 @@ in
   imports = [
     ./configs/zed.nix
     ./configs/ghostty.nix
+    ./configs/gh.nix
   ];
 
   home.username = "aryaman";
@@ -24,7 +25,6 @@ in
     direnv
     helix
     lazygit
-    gh
     ripgrep
     fd
     jq

@@ -57,7 +57,7 @@
     ];
     onActivation = {
       autoUpdate = true;
-      cleanup = "none";  # change to "zap" once you've verified everything works
+      cleanup = "zap";
     };
   };
 
