@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, osConfig, pkgs, ... }:
 
 let
   yfin-cli = pkgs.callPackage ./packages/yfin-cli.nix { };
+  hostName = osConfig.networking.hostName or "";
 in
 {
   imports = [
@@ -57,11 +58,16 @@ in
       options = {
         urAccepted = -1;
       };
+      devices = {
+        jarvis.id = "WQWKHAZ-AHCHPR6-Z4WJY7P-PSHCN6I-7SBA5TW-4DGJGK2-7LRCD62-ATSM7AZ";
+        macbook.id = "NZBFZVS-KDSB7LY-UDRMIXD-QYKIRDI-ZHJRWOG-OL6CGZK-X7UIPTY-VMKPSQJ";
+      };
       folders.brain = {
         id = "brain";
         label = "brain";
         path = "~/brain";
-        devices = [ ];
+        devices = lib.optionals (hostName == "jarvis") [ "macbook" ]
+          ++ lib.optionals (hostName == "macbook") [ "jarvis" ];
       };
     };
   };
