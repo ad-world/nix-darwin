@@ -48,6 +48,24 @@ in
     postgresql_18
   ];
 
+  # ── Services ───────────────────────────────────
+  services.syncthing = {
+    enable = true;
+    overrideDevices = false;
+    overrideFolders = false;
+    settings = {
+      options = {
+        urAccepted = -1;
+      };
+      folders.brain = {
+        id = "brain";
+        label = "brain";
+        path = "~/brain";
+        devices = [ ];
+      };
+    };
+  };
+
   # ── Programs config ────────────────────────────
   programs = {
     direnv = {

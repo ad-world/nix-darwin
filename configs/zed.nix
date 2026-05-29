@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  home.packages = [
+    (pkgs.writeShellScriptBin "zed" ''
+      exec ${pkgs.zed-editor}/bin/zeditor "$@"
+    '')
+  ];
+
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor;
