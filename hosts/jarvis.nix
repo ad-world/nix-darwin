@@ -1,9 +1,16 @@
 { config, pkgs, ... }:
 
+let
+  sshKeys = import ../configs/ssh-keys.nix;
+in
 {
   imports = [ ./common.nix ];
 
   networking.hostName = "jarvis";
+
+  users.users.aryaman.openssh.authorizedKeys.keys = [
+    sshKeys.aryaman.macbook
+  ];
 
   # Host-specific Home Manager config.
   home-manager.users.aryaman = { config, pkgs, ... }: {
