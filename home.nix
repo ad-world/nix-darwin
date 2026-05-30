@@ -110,13 +110,9 @@ in
         # OrbStack integration
         source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
-        # Google Cloud SDK
-        if [ -f '/Users/aryaman/google-cloud-sdk/path.zsh.inc' ]; then
-          . '/Users/aryaman/google-cloud-sdk/path.zsh.inc'
-        fi
-        if [ -f '/Users/aryaman/google-cloud-sdk/completion.zsh.inc' ]; then
-          . '/Users/aryaman/google-cloud-sdk/completion.zsh.inc'
-        fi
+        # Homebrew CLI tools. Append so Nix-provided tools keep precedence.
+        path+=(/opt/homebrew/bin /opt/homebrew/sbin)
+
       '';
     };
 
