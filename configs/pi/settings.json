@@ -1,0 +1,11 @@
+{
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    "npm:pi-hermes-memory",
+    "npm:pi-schedule-prompt"
+  ]
+}

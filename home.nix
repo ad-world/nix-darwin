@@ -9,6 +9,7 @@ in
     ./configs/zed.nix
     ./configs/ghostty.nix
     ./configs/gh.nix
+    ./configs/pi.nix
   ];
 
   home.username = "aryaman";
