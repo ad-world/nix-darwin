@@ -9,6 +9,9 @@
       theme = "Flexoki Dark";
       font-family = "JetBrainsMono Nerd Font";
       font-size = 14;
+      copy-on-select = "clipboard";
+      clipboard-read = "allow";
+      clipboard-write = "allow";
     };
   };
 }

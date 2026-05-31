@@ -16,6 +16,20 @@ in
   home-manager.users.aryaman = { config, pkgs, ... }: {
     home.packages = [ pkgs.opencode ];
 
+    programs.zsh.initContent = ''
+      # When jarvis is reached over SSH, copy back to the client terminal's
+      # clipboard via OSC 52 instead of jarvis's local macOS clipboard.
+      pbcopy() {
+        if [[ -n ''${SSH_CONNECTION:-} || -n ''${SSH_TTY:-} ]]; then
+          local buffer
+          buffer=$(base64 | tr -d '\r\n')
+          printf '\033]52;c;%s\a' "$buffer"
+        else
+          command pbcopy "$@"
+        fi
+      }
+    '';
+
     home.file.".local/share/opencode/logs/.keep".text = "";
 
     launchd.agents.opencode-server = {
