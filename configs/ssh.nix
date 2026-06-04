@@ -3,14 +3,27 @@
 {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
 
-    matchBlocks = {
-      jarvis = {
-        hostname = "jarvis";
-        user = "aryaman";
-        identityFile = "~/.ssh/id_ed25519";
+    settings = {
+      "*" = {
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        Compression = false;
+        ServerAliveInterval = 0;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "no";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+        ControlPersist = "no";
       };
 
+      jarvis = {
+        HostName = "jarvis";
+        User = "aryaman";
+        IdentityFile = "~/.ssh/id_ed25519";
+      };
     };
   };
 }

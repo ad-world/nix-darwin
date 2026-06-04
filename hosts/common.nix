@@ -59,6 +59,8 @@
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
+      # Homebrew now requires explicit confirmation/force when cleanup is enabled.
+      extraFlags = [ "--force-cleanup" ];
     };
   };
 
