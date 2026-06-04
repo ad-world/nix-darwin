@@ -14,6 +14,8 @@
     mutableUserSettings = false;
     mutableUserKeymaps = false;
 
+    extensions = [ "latex" ];
+
     userSettings = {
       project_panel.dock = "left";
       outline_panel.dock = "left";
@@ -33,6 +35,15 @@
         dark = "Vercel Dark";
       };
       autosave.after_delay.milliseconds = 100;
+      lsp.texlab.settings.texlab.build = {
+        executable = "/Library/TeX/texbin/latexmk";
+        args = [
+          "-pdf"
+          "-interaction=nonstopmode"
+          "-synctex=1"
+          "%f"
+        ];
+      };
     };
 
     userKeymaps = [

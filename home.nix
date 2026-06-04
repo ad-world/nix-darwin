@@ -45,6 +45,7 @@ in
     gcc
     cmake
     gnumake
+    texlab
 
     # DB
     postgresql_18
@@ -152,7 +153,10 @@ in
   };
 
   # Keep Bun globals (notably `pi`) available, but do not put Homebrew ahead of Nix.
-  home.sessionPath = [ "/Users/aryaman/.bun/bin" ];
+  home.sessionPath = [
+    "/Users/aryaman/.bun/bin"
+    "/Library/TeX/texbin"
+  ];
 
   home.stateVersion = "24.11";
 }

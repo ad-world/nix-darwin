@@ -54,6 +54,7 @@
       "tailscale-app"
       "rectangle"
       "1password"
+      "mactex"
     ];
     onActivation = {
       autoUpdate = true;
