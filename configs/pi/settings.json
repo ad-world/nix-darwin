@@ -6,6 +6,7 @@
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:pi-hermes-memory",
-    "npm:pi-schedule-prompt"
+    "npm:pi-schedule-prompt",
+    "npm:pi-simplify"
   ]
 }
