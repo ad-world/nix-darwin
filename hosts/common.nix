@@ -44,9 +44,18 @@
       "yakitrak/yakitrak/obsidian-cli"
     ];
     taps = [
-      "steipete/tap"
-      "openclaw/tap"
-      "yakitrak/yakitrak"
+      {
+        name = "steipete/tap";
+        trusted = true;
+      }
+      {
+        name = "openclaw/tap";
+        trusted = true;
+      }
+      {
+        name = "yakitrak/yakitrak";
+        trusted = true;
+      }
     ];
     casks = [
       "ghostty"
