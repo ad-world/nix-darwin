@@ -12,6 +12,7 @@
       copy-on-select = "clipboard";
       clipboard-read = "allow";
       clipboard-write = "allow";
+      keybind = [ "alt+backspace=text:\\x1b\\x7f" ];
     };
   };
 }
