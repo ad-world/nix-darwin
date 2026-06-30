@@ -42,6 +42,7 @@
       "steipete/tap/imsg"
       "openclaw/tap/goplaces"
       "yakitrak/yakitrak/obsidian-cli"
+      "jnsahaj/lumen/lumen"
     ];
     taps = [
       {
@@ -54,6 +55,10 @@
       }
       {
         name = "yakitrak/yakitrak";
+        trusted = true;
+      }
+      {
+        name = "jnsahaj/lumen";
         trusted = true;
       }
     ];
