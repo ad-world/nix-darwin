@@ -105,6 +105,12 @@ in
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+
+      shellAliases = {
+        reload = "source ~/.zshrc";
+        dr = "sudo darwin-rebuild switch --flake ~/.config/nix-darwin#$(hostname -s)";
+      };
+
       initContent = ''
         # Load local secrets without placing them in the Nix store or Git.
         if [[ -r "$HOME/.config/private/zshrc.secrets" ]]; then
