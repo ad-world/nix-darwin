@@ -40,7 +40,6 @@
       "steipete/tap/spogo"
       "steipete/tap/remindctl"
       "steipete/tap/imsg"
-      "openclaw/tap/goplaces"
       "yakitrak/yakitrak/obsidian-cli"
       "jnsahaj/lumen/lumen"
     ];
@@ -69,6 +68,7 @@
       "rectangle"
       "1password"
       "mactex"
+      "openclaw/tap/goplaces"
     ];
     onActivation = {
       autoUpdate = true;

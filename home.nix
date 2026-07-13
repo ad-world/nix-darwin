@@ -106,6 +106,11 @@ in
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       initContent = ''
+        # Load local secrets without placing them in the Nix store or Git.
+        if [[ -r "$HOME/.config/private/zshrc.secrets" ]]; then
+          source "$HOME/.config/private/zshrc.secrets"
+        fi
+
         # Show Apple logo on terminal start
         fastfetch -l macos
 
