@@ -42,6 +42,7 @@
       "steipete/tap/imsg"
       "yakitrak/yakitrak/obsidian-cli"
       "jnsahaj/lumen/lumen"
+      "herdr"
     ];
     taps = [
       {
