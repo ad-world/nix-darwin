@@ -8,6 +8,7 @@ in
   imports = [
     ./configs/zed.nix
     ./configs/ghostty.nix
+    ./configs/herdr.nix
     ./configs/gh.nix
     ./configs/pi.nix
   ];

@@ -13,7 +13,10 @@
       clipboard-read = "allow";
       clipboard-write = "allow";
       ssh-integration = true;
-      keybind = [ "alt+backspace=text:\\x1b\\x7f" ];
+      keybind = [
+        "alt+backspace=text:\\x1b\\x7f"
+        "insert=text:\\x02"
+      ];
     };
   };
 }
